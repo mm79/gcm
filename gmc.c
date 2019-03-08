@@ -76,7 +76,4 @@ main()
 
         if (cpm != -1)
                 printf("%d CPM\n", gc_cpm(fd));
-
-        gc_getver(fd);
 }
-
