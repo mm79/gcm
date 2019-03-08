@@ -1,1 +1,1 @@
-# gcm - simple program to read CPM from GMC Geiger Counter
+# gcm - simple program to read CPM from my GMC Geiger Counter
