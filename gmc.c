@@ -75,5 +75,5 @@ main()
                 printf("%s\n", ver);
 
         if (cpm != -1)
-                printf("%d CPM\n", gc_cpm(fd));
+                printf("%d CPM\n", cpm);
 }
