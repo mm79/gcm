@@ -1,5 +1,9 @@
 /*
  * simple program to get CPM from my GMC Geiger Counter
+ *
+ * output example:
+ * GMC-300Re 4.22
+ * 11 CPM
  */
 
 
@@ -32,6 +36,21 @@ gc_open(const char *device)
         return fd;
 }
 
+char *
+gc_getver(int fd)
+{
+        static char buf[14+1];
+
+        if (write(fd, "<GETVER>>", 9) < 9)
+                return NULL;
+        if (read(fd, buf, sizeof buf) != 14)
+                return NULL;
+
+        buf[14] = '\0';
+
+        return buf;
+}
+
 int
 gc_cpm(int fd)
 {
@@ -49,8 +68,15 @@ int
 main()
 {
         int fd = gc_open("/dev/cuaU0");
+        char *ver = gc_getver(fd);
         int cpm = gc_cpm(fd);
 
+        if (ver != NULL)
+                printf("%s\n", ver);
+
         if (cpm != -1)
-                printf("%d\n", gc_cpm(fd));
+                printf("%d CPM\n", gc_cpm(fd));
+
+        gc_getver(fd);
 }
+
