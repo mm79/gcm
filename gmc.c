@@ -43,7 +43,6 @@ gc_getver(int fd)
 
         if (write(fd, "<GETVER>>", 9) < 9)
                 return NULL;
-	usleep(100000); /* XXX */
         if (read(fd, buf, sizeof buf) != 14)
                 return NULL;
 
@@ -59,7 +58,6 @@ gc_cpm(int fd)
 
         if (write(fd, "<GETCPM>>", 9) < 9)
                 return -1;
-	usleep(100000); /* XXX */
         if (read(fd, buf, 2) < 2)
                 return -1;
 
